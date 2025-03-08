@@ -1,15 +1,10 @@
-#STEP-1: INSTALLING GIT JAVA-1.8.0 MAVEN 
-yum install git java-1.8.0-openjdk maven -y
+#-------java dependency for jenkins------------
 
-#STEP-2: GETTING THE REPO (jenkins.io --> download -- > redhat)
+sudo dnf install java-11-amazon-corretto -y
+
+#------------jenkins install-------------
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
-
-#STEP-3: DOWNLOAD JAVA11 AND JENKINS
-amazon-linux-extras install java-openjdk11 -y
-yum install jenkins -y
-update-alternatives --config java
-
-#STEP-4: RESTARTING JENKINS (when we download service it will on stopped state)
-systemctl start jenkins.service
-systemctl status jenkins.service
+sudo yum install jenkins -y
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
